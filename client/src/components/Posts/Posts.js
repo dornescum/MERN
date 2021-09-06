@@ -1,9 +1,13 @@
 import React from 'react';
+import {useSelector} from "react-redux";
 import Post from "./Post/Post";
 import useStyles from "./styles";
 
 const Posts = () => {
+// in reducers index js am declarat key value posts
+	const posts = useSelector((state)=>state.posts);
 	const classes = useStyles();
+	console.log(posts)
 
 	return (
 		<>
