@@ -11,12 +11,13 @@ import memories from './images/memories.png';
 
 const App = () => {
 	const [currentId, setCurrentId] = useState(0);
-	const dispatch = useDispatch();
 	const classes = useStyles();
+	const dispatch = useDispatch();
+
 
 	useEffect(() => {
 		dispatch(getPosts());
-	}, [ dispatch]);
+	}, [dispatch]);
 
 	return (
 		<Container maxWidth="lg">
@@ -28,10 +29,12 @@ const App = () => {
 				<Container>
 					<Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
 						<Grid item xs={12} sm={7}>
-							<Posts setCurrentId={setCurrentId} />
+							{/*setCurrentId={setCurrentId}*/}
+							<Posts />
 						</Grid>
 						<Grid item xs={12} sm={4}>
-							<Form currentId={currentId} setCurrentId={setCurrentId} />
+							{/*currentId={currentId} setCurrentId={setCurrentId}*/}
+							<Form  />
 						</Grid>
 					</Grid>
 				</Container>

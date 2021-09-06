@@ -5,38 +5,33 @@ import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
 import { createPost} from '../../actions/posts';
-
-const Form = ({ currentId, setCurrentId }) => {
+// { currentId, setCurrentId }
+const Form = () => {
 	const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
-	const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
+	// const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 	const dispatch = useDispatch();
 	const classes = useStyles();
 
-	useEffect(() => {
-		if (post) setPostData(post);
-	}, [post]);
+	// useEffect(() => {
+	// 	if (post) setPostData(post);
+	// }, [post]);
 
 	const clear = () => {
-		setCurrentId(0);
-		setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+		// setCurrentId(0);
+		// setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(createPost(postData));
-		// if (currentId === 0) {
-		// 	dispatch(createPost(postData));
-		// 	clear();
-		// } else {
-		// 	dispatch(updatePost(currentId, postData));
-		// 	clear();
-		// }
 	};
 
 	return (
 		<Paper className={classes.paper}>
 			<form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-				<Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>
+				<Typography variant='h6'> Creating a memory</Typography>
+				{/*<Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>*/}
+				 
 				{/*din useState({})*/}
 				{/*am nevoie de ... altfel suprascriu toate valorile, dupa care ce vreau sa scriu, title, etc*/}
 				<TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
@@ -54,7 +49,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
 			</form>
 		</Paper>
-	);
+	); 
 };
 
 export default Form;
