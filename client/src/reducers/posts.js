@@ -3,10 +3,11 @@
 // const reducer = (state =[], action) =>{
 export default (posts =[], action) =>{
 	switch (action.type){
+		//vine din actions/post.js
 		case 'FETCH_ALL':
-			return action.payload; //vine din actions/post.js
+			return action.payload;
 		case 'CREATE':
-			return posts;
+			return [...posts, action.payload] ;
 		default:
 			return posts;
 	}

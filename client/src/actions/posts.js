@@ -3,6 +3,7 @@ import * as api from '../api';
 // api.fetchPosts()
 
 // action creators
+// dispatch de la thunk
 export const getPosts =()=> async(dispatch)=>{
 	try{
 		const data = await api.fetchPosts();
@@ -16,4 +17,14 @@ export const getPosts =()=> async(dispatch)=>{
 
 	// const action = {type: "FETCH_ALL", payload:[]}
 	// dispatch(action);
+}
+
+export const  createPost =(post)=>async (dispatch)=>{
+	try{
+		const {data} =await api.createPosts(post);
+		dispatch({type:"CREATE", payload: data});
+	}
+	catch(err){
+		console.log(err.message)
+	}
 }
