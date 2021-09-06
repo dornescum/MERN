@@ -9,9 +9,18 @@ export const getPosts =async (req, res)=>{
 		 res.status(200).json(postMessage);
 	}
 	catch(err){
-		res.status(404).json({message: err.message})
+		res.status(404).json({message: err.message});
 	}
 }
-export const createPost =(req, res)=>{
-	res.send('post creation' )
+export const createPost =async (req, res)=>{
+	const post= req.body;
+	// folosesc template din PostMessage
+	const newPost = new PostMessage(post);
+	try{
+		await newPost.save(); //pt db
+		res.status(201).json(newPost);
+	}
+	catch(err){
+		res.status(409).json({message: err.message});
+	}
 }
