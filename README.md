@@ -8,6 +8,7 @@ client:
 -redux-thunk
 -react-filebase64
 -react-dom
+-react-redux
 
 server:
 -body-parser
