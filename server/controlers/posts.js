@@ -4,9 +4,9 @@ import PostMessage from "../models/postMessage.js";
 export const getPosts =async (req, res)=>{
 			// este async(dureaza pana gasesti in baza de date info)
 	try{
-		 const postMessage = await PostMessage.find();
+		 const postMessages = await PostMessage.find(); //toate messajele
 		 // si un raspuns
-		 res.status(200).json(postMessage);
+		 res.status(200).json(postMessages);
 	}
 	catch(err){
 		res.status(404).json({message: err.message});

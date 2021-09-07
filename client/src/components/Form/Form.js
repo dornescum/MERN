@@ -12,13 +12,9 @@ const Form = () => {
 	const dispatch = useDispatch();
 	const classes = useStyles();
 
-	// useEffect(() => {
-	// 	if (post) setPostData(post);
-	// }, [post]);
-
 	const clear = () => {
 		// setCurrentId(0);
-		// setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+		setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
 	};
 
 	const handleSubmit = (e) => {
@@ -31,7 +27,7 @@ const Form = () => {
 			<form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
 				<Typography variant='h6'> Creating a memory</Typography>
 				{/*<Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>*/}
-				 
+
 				{/*din useState({})*/}
 				{/*am nevoie de ... altfel suprascriu toate valorile, dupa care ce vreau sa scriu, title, etc*/}
 				<TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
@@ -49,7 +45,7 @@ const Form = () => {
 				<Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
 			</form>
 		</Paper>
-	); 
+	);
 };
 
 export default Form;

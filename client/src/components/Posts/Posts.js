@@ -1,21 +1,20 @@
 import React from 'react';
-import {useSelector} from "react-redux";
-import Post from "./Post/Post";
-import {Grid, CircularProgress} from "@material-ui/core";
-import useStyles from "./styles";
+import { Grid, CircularProgress } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
-const Posts = ({setCurrentId}) => {
-// in reducers index js am declarat key value posts
-	const posts = useSelector((state)=> state.posts);
+import Post from './Post/Post';
+import useStyles from './styles';
+
+const Posts = ({ setCurrentId }) => {
+	const posts = useSelector((state) => state.posts);
 	const classes = useStyles();
-	console.log(posts)
-	// posts is not iterable !!!
+
 	return (
-		!posts.length ? <CircularProgress /> :(
-			<Grid className={classes.mainContainer} container alignItems='stretch' spacing={3}>
-				{posts.map((post)=>(
-					<Grid item key={post._id} xs={12} sm={6}>
-						<Post props={post} setCurrentId={setCurrentId} />
+		!posts.length ? <CircularProgress /> : (
+			<Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
+				{posts.map((post) => (
+					<Grid key={post._id} item xs={12} sm={6} md={6}>
+						<Post post={post} setCurrentId={setCurrentId} />
 					</Grid>
 				))}
 			</Grid>
@@ -24,4 +23,3 @@ const Posts = ({setCurrentId}) => {
 };
 
 export default Posts;
-
