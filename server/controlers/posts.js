@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 // toata logica pentru rute este aici
 import PostMessage from "../models/postMessage.js";
 
@@ -23,4 +25,13 @@ export const createPost =async (req, res)=>{
 	catch(err){
 		res.status(409).json({message: err.message});
 	}
+}
+
+export const updatePost = async (req,res)=>{
+	const {id: _id} = req.params; //db _id
+	const post = req.body;
+	if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('no post with that id');
+
+	const updatedPost = await PostMessage.findById(_id, post, {new: true});
+	res.json(updatedPost);
 }
