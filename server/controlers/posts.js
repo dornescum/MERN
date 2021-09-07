@@ -11,7 +11,7 @@ export const getPosts =async (req, res)=>{
 		 res.status(200).json(postMessages);
 	}
 	catch(err){
-		res.status(404).json({message: err.message});
+		res.status(404).json({message: err});
 	}
 }
 export const createPost =async (req, res)=>{
@@ -23,7 +23,7 @@ export const createPost =async (req, res)=>{
 		res.status(201).json(newPost);
 	}
 	catch(err){
-		res.status(409).json({message: err.message});
+		res.status(409).json({message: err});
 	}
 }
 
@@ -32,6 +32,6 @@ export const updatePost = async (req,res)=>{
 	const post = req.body;
 	if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('no post with that id');
 
-	const updatedPost = await PostMessage.findById(_id, post, {new: true});
+	const updatedPost = await PostMessage.findById(_id, {...post, _id}, {new: true});
 	res.json(updatedPost);
 }

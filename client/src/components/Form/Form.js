@@ -4,29 +4,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
-import { createPost} from '../../actions/posts';
-// { currentId, setCurrentId }
-const Form = () => {
+import { createPost, updatePost} from '../../actions/posts';
+
+const Form = ({ currentId, setCurrentId }) => {
 	const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
-	// const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
+	const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 	const dispatch = useDispatch();
 	const classes = useStyles();
+	useEffect(()=>{
+		if (post) setPostData(post)
+	}, [post])
 
 	const clear = () => {
-		// setCurrentId(0);
+		setCurrentId(0); //null
 		setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(createPost(postData));
+		 if (currentId){
+		 	dispatch(updatePost(currentId,  postData))
+		 } else {
+			 dispatch(createPost(postData));
+		 }
+		 clear();
 	};
 
 	return (
 		<Paper className={classes.paper}>
 			<form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-				<Typography variant='h6'> Creating a memory</Typography>
-				{/*<Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>*/}
+				<Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography>
 
 				{/*din useState({})*/}
 				{/*am nevoie de ... altfel suprascriu toate valorile, dupa care ce vreau sa scriu, title, etc*/}
