@@ -14,6 +14,14 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 // inainte de routes !
 app.use(cors());
+
+// =================================
+app.get('/', (req, res) => {
+	res.redirect('/posts');
+})
+// =================================
+
+
 // imp '/posts'
 app.use('/posts', postRoutes);
 
