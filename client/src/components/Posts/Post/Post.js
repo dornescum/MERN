@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -12,6 +12,7 @@ import useStyles from './styles';
 const Post = ({ post, setCurrentId }) => {
 	const dispatch = useDispatch();
 	const classes = useStyles();
+	const [btnColor, setBtnColor] =useState('primary');
 
 	return (
 		<Card className={classes.card}>
@@ -32,8 +33,9 @@ const Post = ({ post, setCurrentId }) => {
 				<Typography variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
 			</CardContent>
 			<CardActions className={classes.cardActions}>
-				<Button size="small" color="primary"><ThumbUpAltIcon fontSize="small" onClick={()=> console.log('click')}/> Like {post.likeCount} </Button>
-				<Button size="small" color="primary" onClick={()=> dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>
+				{/*&nbsp; Like &nbsp; {post.likeCount}*/}
+				<Button size="small"  color={btnColor ? "primary" : "secondary"}><ThumbUpAltIcon fontSize="small" onClick={()=>setBtnColor(!btnColor)}/> </Button>
+				<Button size="small" color="primary" onClick={()=> dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" /></Button>
 
 			</CardActions>
 		</Card>
