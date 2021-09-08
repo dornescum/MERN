@@ -16,7 +16,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	}, [post])
 
 	const clear = () => {
-		setCurrentId(0); //null
+		setCurrentId(null); //0
 		setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
 	};
 
@@ -24,7 +24,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		e.preventDefault();
 		dispatch(createPost(postData));
 		 if (currentId){
-		 	dispatch(updatePost(currentId,  postData))
+		 	dispatch(updatePost(currentId,  postData)) // in afara de data am nevoie si de id
 		 } else {
 			 dispatch(createPost(postData));
 		 }

@@ -31,7 +31,7 @@ export const updatePost = (id, post) => async (dispatch) => {
 		dispatch({type: "UPDATE", payload: data});
 	} catch (err) {
 		console.log(err)
-	}
+	} 
 }
 export const deletePost = (id) => async (dispatch) => {
 	try {
