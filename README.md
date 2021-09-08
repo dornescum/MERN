@@ -16,3 +16,4 @@ server:
 -express
 -mongoose
 -nodemon
+-dotenv
