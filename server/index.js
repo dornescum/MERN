@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 // imp '/posts'
 app.use('/posts', postRoutes);
 
-// const CONNECTION_URL ='mongodb+srv://mernUser:ceapa_2000@thenetninja.ftnae.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL ='mongodb+srv://mernUser:ceapa_2000@thenetninja.ftnae.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 const PORT = process.env.PORT|| 5000;
 // err dc adaug {}

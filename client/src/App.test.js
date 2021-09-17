@@ -5,10 +5,10 @@ import {Provider, useDispatch} from "react-redux";
 
 afterEach(cleanup);
 const startingState = [];
-function reducer(state =startingState, action){
+ function reducer(state =startingState, action){
 	switch (action.type){
 		case 'FETCH_ALL':
-			return {...state. post}
+			return  {...state. post}
 		default:
 			return state
 	}
@@ -27,7 +27,7 @@ test('Memories', ()=>{
 	const searchTEST = screen.getByText('Memories');
 	expect(searchTEST).toBeInTheDocument();
 })
-
+afterEach(cleanup);
 // test('Memories', ()=>{
 // 	render(<App />);
 // 	const searchTEST = screen.getByText('Memories');

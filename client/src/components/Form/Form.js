@@ -22,6 +22,11 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		// dc este gol
+		if (postData.selectedFile === ''){
+			return;
+		}
+		// ==================
 		dispatch(createPost(postData));
 		 if (currentId){
 		 	dispatch(updatePost(currentId,  postData)) // in afara de data am nevoie si de id
@@ -38,7 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 				{/*din useState({})*/}
 				{/*am nevoie de ... altfel suprascriu toate valorile, dupa care ce vreau sa scriu, title, etc*/}
-				<TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
+				<TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} required />
 				<TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
 				<TextField name="message" variant="outlined" label="Message" fullWidth multiline rows={4} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
 				{/*// fac split intr un array cu virgula ca si separator*/}
@@ -49,6 +54,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						multiple={false}
 						// imp {base64} !!!
 						onDone={({ base64 } ) => setPostData({ ...postData, selectedFile: base64 })} />
+
 				</div>
 				<Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
 				<Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
